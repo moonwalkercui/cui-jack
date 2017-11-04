@@ -1,8 +1,0 @@
-user:
-  type:
-    normal: "会员"
-    seller: "代销"
-    storekeeper: "掌柜"
-order:
-  state:
-    init: "生成订单"
