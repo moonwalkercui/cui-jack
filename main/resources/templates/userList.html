@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout/header"/>
+<body class="form pushable" style="background: #2185d0;">
+<div th:replace="layout/top"></div>
+<div class="pusher">
+    <div class="fullheight" style="height: 100%; display: flex;">
+        <!-- left -->
+        <div th:replace="layout/left"></div>
+        <!-- 内容 -->
+        <div class="mainbox">
+            <div class="ui grid padded" id='centerbox' style="display: none">
+                <div class="sixteen wide column">
+                    <div class="ui secondary pointing menu large blue">
+                        <a class="item active">
+                            Home
+                        </a>
+                        <a class="item">
+                            Messages
+                        </a>
+                        <a class="item">
+                            Friends
+                        </a>
+                        <div class="right menu">
+                            <a class="ui item">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+
+                    <h5 class="ui top attached header">
+                        Dogs
+                    </h5>
+                    <div class="ui attached secondary segment">
+                        <div class="ui small primary basic button">
+                            Approve
+                        </div>
+                        <div class="ui small  primary basic disabled button">
+                            Approve All
+                        </div>
+
+                        <div class="ui small right floated primary basic button">
+                            right
+                        </div>
+                    </div>
+                    <div class="ui attached segment">
+                        <table class="ui very basic fixed table fluid">
+
+                            <thead>
+                            <tr>
+                                <th class="single line">Evidence Rating</th>
+                                <th>Effect</th>
+                                <th class="right aligned">Efficacy</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <tr th:each="v:${list}">
+                                <td th:text="${v.id}"><i class='folder icon'></i>
+                                </td>
+                                <td th:text="${v.mobile}"></td>
+                                <td class="right aligned" th:text="${v.email}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <!--底部-->
+
+                        <div class="ui two column centered grid" >
+
+                            <div class="column">-</div>
+                            <div class="column">
+                                <div class="ui buttons right floated" id="pagination">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- /内容结束 -->
+    </div>
+</div>
+<footer th:replace="layout/footer"></footer>
+<script>
+    page({
+        box:'pagination',//存放分页的容器
+        href:'#?p=',//跳转连接
+        page:10,//当前页码
+        count:30,//总页数
+        num:5,//页面展示的页码个数
+    })
+</script>
+</body>
+</html>
