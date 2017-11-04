@@ -13,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -59,6 +62,23 @@ public class UserController {
         user.setMobile(mobile);
 
         return userRepository.save(user);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/first", method = RequestMethod.GET)
+    public Map<String, Object> firstResp (HttpServletRequest request){
+        Map<String, Object> map = new HashMap<>();
+        request.getSession().setAttribute("request Url", request.getRequestURL());
+        map.put("request Url", request.getRequestURL());
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/sessions", method = RequestMethod.GET)
+    public Object sessions (HttpServletRequest request){
+        Map<String, Object> map = new HashMap<>();
+        map.put("sessionId", request.getSession().getId());
+        map.put("message", request.getSession().getAttribute("map"));
+        return map;
     }
 
 }
